@@ -53,6 +53,7 @@ public class MagicCircleController : MonoBehaviour
             }
 
             gestureRecorder.StartRecording();
+            magicGuideDisplay.ShowGuide(_currentTemplate);
         }
 
         // 오른손 Grip 궤적 기록
@@ -65,6 +66,7 @@ public class MagicCircleController : MonoBehaviour
         if (_isDrawing && rightGrip <= 0.8f)
         {
             _isDrawing = false;
+            magicGuideDisplay.HideGuide();
 
             List<Vector3> raw = gestureRecorder.StopRecording();
             List<Vector3> normalized = GestureNormalizer.Normalize(raw);
