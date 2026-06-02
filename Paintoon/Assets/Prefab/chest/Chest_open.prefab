@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6368024965199324832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8728740122335831420}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8728740122335831420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368024965199324832}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.03, y: 1.745, z: -0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3081967699512995315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6303008425655516870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9060558070883455796, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
       propertyPath: m_Name
-      value: Chest Variant
+      value: Chest_open
       objectReference: {fileID: 0}
     - target: {fileID: 9060558070883455797, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,7 +85,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9060558070883455797, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8728740122335831420}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 9060558070883455796, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
       insertIndex: -1
@@ -103,3 +137,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   animator: {fileID: 2560607008577860225}
+  crystalPrefab: {fileID: 2002326244366588084, guid: 8031f94b5b5104c4084910366f9ad96d, type: 3}
+  spawnPoint: {fileID: 8728740122335831420}
+  hasCrystal: 0
+--- !u!4 &3081967699512995315 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9060558070883455797, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
+  m_PrefabInstance: {fileID: 6303008425655516870}
+  m_PrefabAsset: {fileID: 0}

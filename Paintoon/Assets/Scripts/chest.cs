@@ -4,6 +4,10 @@ public class Chest : MonoBehaviour
 {
     public Animator animator;
 
+    public GameObject crystalPrefab;
+    public Transform spawnPoint;
+
+    public bool hasCrystal = false;
     private bool opened = false;
 
     public void OpenChest()
@@ -13,6 +17,17 @@ public class Chest : MonoBehaviour
         opened = true;
 
         animator.SetTrigger("open");
+
+        if (hasCrystal)
+        {
+            GameObject crystal = Instantiate(
+                crystalPrefab,
+                spawnPoint.position,
+                Quaternion.identity
+            );
+
+            Destroy(crystal, 3f);
+        }
     }
     private void Update()
     {
