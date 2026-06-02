@@ -54,4 +54,20 @@ public static class GestureNormalizer
 
         return result;
     }
+
+    public static List<Vector3> ProjectToViewPlane(List<Vector3> points, Camera camera)
+    {
+        List<Vector3> projected = new List<Vector3>();
+
+        foreach (var point in points)
+        {
+            // 카메라 로컬 좌표로 변환
+            Vector3 localPoint = camera.transform.InverseTransformPoint(point);
+            // Z값(깊이)을 0으로 만들어서 평면에 투영
+            localPoint.z = 0f;
+            projected.Add(localPoint);
+        }
+
+        return projected;
+    }
 }

@@ -19,6 +19,7 @@ public class MagicCircleController : MonoBehaviour
     public InputActionReference triggerAction;
 
     public MagicGuideDisplay magicGuideDisplay;
+    public AccuracyDisplay accuracyDisplay;
 
     private bool _isDrawing = false;
     private GestureTemplate _currentTemplate; // 현재 선택된 템플릿
@@ -69,7 +70,8 @@ public class MagicCircleController : MonoBehaviour
             magicGuideDisplay.HideGuide();
 
             List<Vector3> raw = gestureRecorder.StopRecording();
-            List<Vector3> normalized = GestureNormalizer.Normalize(raw);
+            List<Vector3> projected = GestureNormalizer.ProjectToViewPlane(raw, Camera.main);
+            List<Vector3> normalized = GestureNormalizer.Normalize(projected);
             float accuracy = GestureComparer.Compare(normalized, _currentTemplate.points);
 
             if (accuracy >= _currentTemplate.minAccuracy)
@@ -82,6 +84,7 @@ public class MagicCircleController : MonoBehaviour
             {
                 Debug.Log($"마법진 인식 실패 (정확도: {accuracy:P0})");
             }
+            accuracyDisplay.ShowAccuracy(accuracy);
         }
 
         // Trigger

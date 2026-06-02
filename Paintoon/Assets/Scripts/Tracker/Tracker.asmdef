@@ -2,7 +2,8 @@
 	"name": "Tracker",
 	"rootNamespace": "",
 	"references": [
-		"Unity.InputSystem"
+		"Unity.InputSystem",
+		"Unity.TextMeshPro"
 	],
 	"includePlatforms": [],
 	"excludePlatforms": [],
