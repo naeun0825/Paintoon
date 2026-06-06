@@ -5929,32 +5929,44 @@ PrefabInstance:
       value: Player_UI
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 270
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7922966860232111494, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8196975980603290221, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_Pivot.x

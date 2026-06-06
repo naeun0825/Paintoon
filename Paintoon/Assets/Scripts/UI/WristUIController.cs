@@ -11,7 +11,7 @@ public class WristUIController : MonoBehaviour
 
     [Header("설정")]
     [Range(0f, 1f)]
-    public float activationThreshold = 0.5f; // 손등이 위를 향하는 정도
+    public float activationThreshold = 0.8f; // 손등이 위를 향하는 정도
 
     private float _remainingTime = 60f;
     private bool _isRunning = true;
@@ -21,7 +21,7 @@ public class WristUIController : MonoBehaviour
         // 손등이 위를 향하는지 확인
         // Left Controller의 Up 벡터와 세계 Up 벡터의 내적
         float dot = Vector3.Dot(leftController.up, Vector3.up);
-        wristUI.transform.rotation = leftController.rotation * Quaternion.Euler(270, -180, 0);
+        wristUI.transform.rotation = leftController.rotation * Quaternion.Euler(0, 90, 90);
 
         if (dot < -activationThreshold)
             wristUI.SetActive(true);
