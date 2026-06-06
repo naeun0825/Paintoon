@@ -10,6 +10,8 @@ public class Chest : MonoBehaviour
     public bool hasCrystal = false;
     private bool opened = false;
 
+    public CrystalManager crystalManager;
+
     public void OpenChest()
     {
         if (opened) return;
@@ -25,8 +27,12 @@ public class Chest : MonoBehaviour
                 spawnPoint.position,
                 Quaternion.identity
             );
+            CrystalItem item = crystal.GetComponent<CrystalItem>();
 
-            Destroy(crystal, 3f);
+            if (item != null)
+            {
+                item.SetManager(crystalManager);
+            }
         }
     }
     private void Update()
