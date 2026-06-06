@@ -11,7 +11,7 @@ public class WristUIController : MonoBehaviour
 
     [Header("설정")]
     [Range(0f, 1f)]
-    public float activationThreshold = 0.8f; // 손등이 위를 향하는 정도
+    public float activationThreshold = 0.9f; // 손등이 위를 향하는 정도
 
     private float _remainingTime = 60f;
     private bool _isRunning = true;
