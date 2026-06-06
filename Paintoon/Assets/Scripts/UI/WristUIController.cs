@@ -22,7 +22,7 @@ public class WristUIController : MonoBehaviour
         // Left Controller의 Up 벡터와 세계 Up 벡터의 내적
         float dot = Vector3.Dot(leftController.up, Vector3.up);
 
-        if (dot > activationThreshold)
+        if (dot < -activationThreshold)
             wristUI.SetActive(true);
         else
             wristUI.SetActive(false);

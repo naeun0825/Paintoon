@@ -5655,6 +5655,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2005057561 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6377807662658438659, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+  m_PrefabInstance: {fileID: 1475204398696217699}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2054555133
 GameObject:
   m_ObjectHideFlags: 0
@@ -5895,6 +5900,22 @@ PrefabInstance:
       propertyPath: projectileEffect
       value: 
       objectReference: {fileID: 178324926}
+    - target: {fileID: 1018220006594437488, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3271409861207441693, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2005057561}
+    - target: {fileID: 3271409861207441693, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703948332810006998, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2005057561}
     - target: {fileID: 4444893706435014565, guid: a6cd88c8f6b99e14282c3ffcd4406d2d, type: 3}
       propertyPath: m_Name
       value: Player_UI
@@ -5960,10 +5981,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 203844589}
-  - {fileID: 2054555137}
   - {fileID: 1306281764}
+  - {fileID: 1475204398696217699}
   - {fileID: 2113574512}
   - {fileID: 909726259}
   - {fileID: 1809615858}
   - {fileID: 328957527}
-  - {fileID: 1475204398696217699}
+  - {fileID: 2054555137}
