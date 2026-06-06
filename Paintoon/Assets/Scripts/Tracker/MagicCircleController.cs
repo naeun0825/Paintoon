@@ -18,6 +18,10 @@ public class MagicCircleController : MonoBehaviour
     public InputActionReference leftGripAction;
     public InputActionReference triggerAction;
 
+    [Header("이펙트")]
+    public TrailRenderer drawingTrail;
+    public ParticleSystem projectileEffect;
+
     public MagicGuideDisplay magicGuideDisplay;
     public AccuracyDisplay accuracyDisplay;
 
@@ -37,6 +41,7 @@ public class MagicCircleController : MonoBehaviour
         {
             _isDrawing = true;
             _readyMagic = "";
+            drawingTrail.gameObject.SetActive(true);
 
             // 스킬 1 or 2 결정
             if (leftGrip > 0.8f)
@@ -68,6 +73,7 @@ public class MagicCircleController : MonoBehaviour
         {
             _isDrawing = false;
             magicGuideDisplay.HideGuide();
+            drawingTrail.gameObject.SetActive(false);
 
             List<Vector3> raw = gestureRecorder.StopRecording();
             List<Vector3> projected = GestureNormalizer.ProjectToViewPlane(raw, Camera.main);
@@ -97,7 +103,31 @@ public class MagicCircleController : MonoBehaviour
 
     private void FireMagic(string magicName, float accuracy)
     {
-        //Raycast 이용 로직 적용할 장소
-        Debug.Log($"{magicName} 정확도: {accuracy:P0}");
+        projectileEffect.transform.position = transform.position;
+        projectileEffect.transform.rotation = transform.rotation;
+        projectileEffect.Play();
+
+        int damage = Mathf.RoundToInt(accuracy * 3f);
+        damage = Mathf.Max(1, damage); // 최소 1 데미지
+
+        // Enemy 레이어 마스크 설정
+        int enemyLayer = LayerMask.GetMask("Enemy");
+
+        // 오른손 컨트롤러 방향으로 Raycast 발사
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer))
+        {
+            EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+                Debug.Log($"{magicName} 적 명중! 데미지: {damage} (정확도: {accuracy:P0})");
+            }
+        }
+        else
+        {
+            Debug.Log($"{magicName} 빗나감!");
+        }
     }
 }
