@@ -25,7 +25,7 @@ public class MagicGuideDisplay : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
 
-        transform.position = mainCamera.transform.position + mainCamera.transform.forward * 1f + mainCamera.transform.right * 0.3f;
+        transform.position = mainCamera.transform.position + mainCamera.transform.forward * 1f + mainCamera.transform.right * 0f;
         transform.rotation = mainCamera.transform.rotation;
 
         if (_currentPoints != null)
