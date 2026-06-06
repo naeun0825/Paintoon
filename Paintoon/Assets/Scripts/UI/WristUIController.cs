@@ -21,6 +21,7 @@ public class WristUIController : MonoBehaviour
         // 손등이 위를 향하는지 확인
         // Left Controller의 Up 벡터와 세계 Up 벡터의 내적
         float dot = Vector3.Dot(leftController.up, Vector3.up);
+        wristUI.transform.rotation = leftController.rotation * Quaternion.Euler(270, -180, 0);
 
         if (dot < -activationThreshold)
             wristUI.SetActive(true);
