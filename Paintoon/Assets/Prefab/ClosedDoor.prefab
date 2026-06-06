@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6689128338937364536
+--- !u!1 &3786059420018096052
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,67 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7865891422865125757}
+  - component: {fileID: 5195564610682077903}
+  - component: {fileID: 1289174416363588178}
   m_Layer: 0
-  m_Name: gate
+  m_Name: ClosedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7865891422865125757
+--- !u!4 &5195564610682077903
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6689128338937364536}
+  m_GameObject: {fileID: 3786059420018096052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107.2, y: 0.2409195, z: 176.7}
+  m_LocalPosition: {x: -97.11, y: 1.77645, z: 182.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 855827007707417935}
-  - {fileID: 375946240265252478}
+  - {fileID: 5827438297805954375}
+  - {fileID: 3742572498984372599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &699899602219206840
+--- !u!114 &1289174416363588178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3786059420018096052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28976f9711517df4d9fb04482c968078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  leftDoor: {fileID: 5827438297805954375}
+  rightDoor: {fileID: 3742572498984372599}
+  openAngle: 90
+  openSpeed: 10
+--- !u!1001 &5947338222313642160
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7865891422865125757}
+    m_TransformParent: {fileID: 5195564610682077903}
     m_Modifications:
     - target: {fileID: 168331776775718391, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.359997
+      value: 3.4366455
       objectReference: {fileID: 0}
     - target: {fileID: 168331776775718391, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.5240253
       objectReference: {fileID: 0}
     - target: {fileID: 168331776775718391, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24
+      value: -5.5330048
       objectReference: {fileID: 0}
     - target: {fileID: 168331776775718391, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,41 +100,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 168331776776149463, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
       propertyPath: m_Name
-      value: DoorGate_Wooden_Left
+      value: left_door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
---- !u!4 &855827007707417935 stripped
+--- !u!4 &5827438297805954375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 168331776775718391, guid: d7209de03bf68cd47ac13a2ac5d71c42, type: 3}
-  m_PrefabInstance: {fileID: 699899602219206840}
+  m_PrefabInstance: {fileID: 5947338222313642160}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5284646277492609038
+--- !u!1001 &9192195438339618567
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7865891422865125757}
+    m_TransformParent: {fileID: 5195564610682077903}
     m_Modifications:
     - target: {fileID: 5503808687936463440, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_Name
-      value: DoorGate_Wooden_Right
+      value: right_door
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08
+      value: -9.993355
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.5240253
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.18001282
+      value: -5.4977875
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalRotation.w
@@ -125,15 +142,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -152,8 +169,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
---- !u!4 &375946240265252478 stripped
+--- !u!4 &3742572498984372599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5503808687936831088, guid: fdd9bf6358e444d4d844c7879eddf983, type: 3}
-  m_PrefabInstance: {fileID: 5284646277492609038}
+  m_PrefabInstance: {fileID: 9192195438339618567}
   m_PrefabAsset: {fileID: 0}
