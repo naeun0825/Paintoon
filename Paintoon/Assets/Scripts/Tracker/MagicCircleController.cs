@@ -78,19 +78,9 @@ public class MagicCircleController : MonoBehaviour
             List<Vector3> raw = gestureRecorder.StopRecording();
             List<Vector3> projected = GestureNormalizer.ProjectToBestPlane(raw);
             List<Vector3> normalized = GestureNormalizer.Normalize(projected);
-            float accuracy = GestureComparer.CompareWithRotation(normalized, _currentTemplate.points);
 
-            // MagicCircleController.cs Grip 뗌 부분에 임시로 추가
-            Debug.Log($"Template first: {_currentTemplate.points[0]}");
-            Debug.Log($"Template Final: {_currentTemplate.points[63]}");
-            Debug.Log($"Noramlized first: {normalized[0]}");
-            Debug.Log($"Normalized final: {normalized[63]}");
-
-            for (int i = 0; i < 8; i++)
-            {
-                int idx = i * 8;
-                Debug.Log($"입력 점 {idx}: {normalized[idx]}");
-            }
+            // 새로운 특징 기반 정확도 계산 (다음에 만들 GestureAnalyzer 사용)
+            float accuracy = GestureAnalyzer.Analyze(normalized, _currentTemplate);
 
             if (accuracy >= _currentTemplate.minAccuracy)
             {
