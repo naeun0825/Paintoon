@@ -76,7 +76,7 @@ public class MagicCircleController : MonoBehaviour
             drawingTrail.gameObject.SetActive(false);
 
             List<Vector3> raw = gestureRecorder.StopRecording();
-            List<Vector3> projected = GestureNormalizer.ProjectToViewPlane(raw, Camera.main);
+            List<Vector3> projected = GestureNormalizer.ProjectToBestPlane(raw);
             List<Vector3> normalized = GestureNormalizer.Normalize(projected);
             float accuracy = GestureComparer.Compare(normalized, _currentTemplate.points);
 
