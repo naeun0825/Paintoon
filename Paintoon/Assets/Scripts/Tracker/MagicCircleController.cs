@@ -86,6 +86,12 @@ public class MagicCircleController : MonoBehaviour
             Debug.Log($"Noramlized first: {normalized[0]}");
             Debug.Log($"Normalized final: {normalized[63]}");
 
+            for (int i = 0; i < 8; i++)
+            {
+                int idx = i * 8;
+                Debug.Log($"ÀÔ·Â Á¡ {idx}: {normalized[idx]}");
+            }
+
             if (accuracy >= _currentTemplate.minAccuracy)
             {
                 _readyMagic = _currentTemplate.magicName;
