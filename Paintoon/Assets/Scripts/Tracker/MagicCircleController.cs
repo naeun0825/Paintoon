@@ -108,8 +108,8 @@ public class MagicCircleController : MonoBehaviour
 
     private void FireMagic(string magicName, float accuracy)
     {
-        projectileEffect.transform.position = transform.position;
-        projectileEffect.transform.rotation = transform.rotation;
+        projectileEffect.transform.position = wandTransform.position;
+        projectileEffect.transform.rotation = wandTransform.rotation;
         projectileEffect.Play();
 
         int damage = Mathf.RoundToInt(accuracy * 3f);
