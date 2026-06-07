@@ -80,6 +80,12 @@ public class MagicCircleController : MonoBehaviour
             List<Vector3> normalized = GestureNormalizer.Normalize(projected);
             float accuracy = GestureComparer.Compare(normalized, _currentTemplate.points);
 
+            // MagicCircleController.cs Grip 뗌 부분에 임시로 추가
+            Debug.Log($"Template first: {_currentTemplate.points[0]}");
+            Debug.Log($"Template Final: {_currentTemplate.points[63]}");
+            Debug.Log($"Noramlized first: {normalized[0]}");
+            Debug.Log($"Normalized final: {normalized[63]}");
+
             if (accuracy >= _currentTemplate.minAccuracy)
             {
                 _readyMagic = _currentTemplate.magicName;
