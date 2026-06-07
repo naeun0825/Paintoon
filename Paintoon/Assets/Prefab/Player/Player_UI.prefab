@@ -5291,6 +5291,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1569595125905362017}
     - target: {fileID: 383103704385339999, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
+      propertyPath: leftHandTransform
+      value: 
+      objectReference: {fileID: 6633484322174731771}
+    - target: {fileID: 383103704385339999, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
+      propertyPath: leftTriggerAction
+      value: 
+      objectReference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 383103704385339999, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
       propertyPath: magicGuideDisplay
       value: 
       objectReference: {fileID: 3703948332810006998}
@@ -5425,6 +5433,11 @@ MonoBehaviour:
 --- !u!20 &6377807662658438659 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6627023820520764681, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
+  m_PrefabInstance: {fileID: 249225521512346378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6633484322174731771 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6880290299427256049, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
   m_PrefabInstance: {fileID: 249225521512346378}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7125399297302504083 stripped

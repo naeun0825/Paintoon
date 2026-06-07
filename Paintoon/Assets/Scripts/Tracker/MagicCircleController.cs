@@ -17,6 +17,7 @@ public class MagicCircleController : MonoBehaviour
     public InputActionReference rightGripAction;
     public InputActionReference leftGripAction;
     public InputActionReference triggerAction;
+    public InputActionReference leftTriggerAction;
 
     [Header("이펙트")]
     public TrailRenderer drawingTrail;
@@ -28,6 +29,10 @@ public class MagicCircleController : MonoBehaviour
     public MagicGuideDisplay magicGuideDisplay;
     public AccuracyDisplay accuracyDisplay;
 
+    [Header("상호작용")]
+    public Transform leftHandTransform; // 왼손 컨트롤러
+    public float interactRadius = 0.3f;
+
     private bool _isDrawing = false;
     private GestureTemplate _currentTemplate; // 현재 선택된 템플릿
     private string _readyMagic = "";
@@ -38,6 +43,7 @@ public class MagicCircleController : MonoBehaviour
         float rightGrip = rightGripAction.action.ReadValue<float>();
         float leftGrip = leftGripAction.action.ReadValue<float>();
         float trigger = triggerAction.action.ReadValue<float>();
+        float leftTrigger = leftTriggerAction.action.ReadValue<float>();
 
         // 오른손 Grip 누름
         if (rightGrip > 0.8f && !_isDrawing)
@@ -99,19 +105,17 @@ public class MagicCircleController : MonoBehaviour
         }
 
         // Trigger
-        if (trigger > 0.8f)
+        // 오른손 Trigger → 마법 발사
+        if (trigger > 0.8f && !string.IsNullOrEmpty(_readyMagic))
         {
-            if (!string.IsNullOrEmpty(_readyMagic))
-            {
-                // 마법 장전 상태 → 발사
-                FireMagic(_readyMagic, _magicAccuracy);
-                _readyMagic = "";
-            }
-            else
-            {
-                // 마법 장전 안 된 상태 → 상호작용
-                Interact();
-            }
+            FireMagic(_readyMagic, _magicAccuracy);
+            _readyMagic = "";
+        }
+
+        // 왼손 Trigger → 상호작용 (별개로)
+        if (leftTrigger > 0.8f)
+        {
+            Interact();
         }
     }
 
@@ -147,21 +151,27 @@ public class MagicCircleController : MonoBehaviour
 
     private void Interact()
     {
-        Ray ray = new Ray(wandTransform.position, wandTransform.forward);
+        Collider[] colliders = Physics.OverlapSphere(leftHandTransform.position, interactRadius);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+        foreach (var col in colliders)
         {
-            if (hit.collider.CompareTag("Chest"))
+            if (col.CompareTag("Chest"))
             {
-                Chest chest = hit.collider.GetComponent<Chest>();
+                Chest chest = col.GetComponent<Chest>();
                 if (chest != null)
+                {
                     chest.OpenChest();
+                    return;
+                }
             }
-            else if (hit.collider.CompareTag("Door"))
+            else if (col.CompareTag("Door"))
             {
-                DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
+                DoorTrigger door = col.GetComponent<DoorTrigger>();
                 if (door != null)
+                {
                     door.LoadNextScene();
+                    return;
+                }
             }
         }
     }
