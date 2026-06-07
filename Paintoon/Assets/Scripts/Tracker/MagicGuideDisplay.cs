@@ -66,18 +66,88 @@ public class MagicGuideDisplay : MonoBehaviour
         else if (magicName == "StarCircle")
         {
             int half = count / 2;
+
+            // 원 파트
             for (int i = 0; i < half; i++)
             {
                 float angle = (float)i / half * Mathf.PI * 2f;
                 points.Add(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f));
             }
-            int tips = 5;
-            for (int i = 0; i < half; i++)
+
+            // 별 파트 (뾰족한 별)
+            Vector3[] starPoints = new Vector3[10];
+            for (int i = 0; i < 10; i++)
             {
-                float angle = (float)i / half * Mathf.PI * 2f;
-                float r = (i % (half / tips) < (half / tips) / 2) ? 1f : 0.4f;
-                points.Add(new Vector3(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r, 0f));
+                float angle = (float)i / 10 * Mathf.PI * 2f - Mathf.PI / 2f;
+                float r = (i % 2 == 0) ? 1f : 0.4f;
+                starPoints[i] = new Vector3(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r, 0f);
             }
+
+            int perSegment = half / 10;
+            for (int s = 0; s < 10; s++)
+            {
+                Vector3 from = starPoints[s];
+                Vector3 to = starPoints[(s + 1) % 10];
+                for (int i = 0; i < perSegment; i++)
+                {
+                    float t = (float)i / perSegment;
+                    points.Add(Vector3.Lerp(from, to, t));
+                }
+            }
+
+            while (points.Count < count)
+                points.Add(starPoints[0]);
+
+        }
+        else if (magicName == "Star")
+        {
+            int tips = 5;
+            // 꼭짓점 10개 (바깥 5개, 안쪽 5개) 먼저 계산
+            Vector3[] starPoints = new Vector3[10];
+            for (int i = 0; i < 10; i++)
+            {
+                float angle = (float)i / 10 * Mathf.PI * 2f - Mathf.PI / 2f;
+                float r = (i % 2 == 0) ? 1f : 0.4f; // 짝수: 바깥, 홀수: 안쪽
+                starPoints[i] = new Vector3(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r, 0f);
+            }
+
+            // 꼭짓점 사이를 균등하게 채우기
+            int perSegment = count / 10;
+            for (int s = 0; s < 10; s++)
+            {
+                Vector3 from = starPoints[s];
+                Vector3 to = starPoints[(s + 1) % 10];
+                for (int i = 0; i < perSegment; i++)
+                {
+                    float t = (float)i / perSegment;
+                    points.Add(Vector3.Lerp(from, to, t));
+                }
+            }
+
+            while (points.Count < count)
+                points.Add(starPoints[0]);
+        }
+        else if (magicName == "Triangle")
+        {
+            Vector3[] corners = new Vector3[]
+            {
+                new Vector3(0f, 1f, 0f),
+                new Vector3(-1f, -1f, 0f),
+                new Vector3(1f, -1f, 0f),
+            };
+            int perSide = count / 3;
+            for (int s = 0; s < 3; s++)
+            {
+                Vector3 from = corners[s];
+                Vector3 to = corners[(s + 1) % 3];
+                for (int i = 0; i < perSide; i++)
+                {
+                    float t = (float)i / perSide;
+                    points.Add(Vector3.Lerp(from, to, t));
+                }
+            }
+            while (points.Count < count)
+                points.Add(corners[0]);
         }
 
         return points;
