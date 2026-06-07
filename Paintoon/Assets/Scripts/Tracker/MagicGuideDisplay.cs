@@ -63,42 +63,6 @@ public class MagicGuideDisplay : MonoBehaviour
                 points.Add(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f));
             }
         }
-        else if (magicName == "StarCircle")
-        {
-            int half = count / 2;
-
-            // 원 파트
-            for (int i = 0; i < half; i++)
-            {
-                float angle = (float)i / half * Mathf.PI * 2f;
-                points.Add(new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f));
-            }
-
-            // 별 파트 (뾰족한 별)
-            Vector3[] starPoints = new Vector3[10];
-            for (int i = 0; i < 10; i++)
-            {
-                float angle = (float)i / 10 * Mathf.PI * 2f - Mathf.PI / 2f;
-                float r = (i % 2 == 0) ? 1f : 0.4f;
-                starPoints[i] = new Vector3(Mathf.Cos(angle) * r, Mathf.Sin(angle) * r, 0f);
-            }
-
-            int perSegment = half / 10;
-            for (int s = 0; s < 10; s++)
-            {
-                Vector3 from = starPoints[s];
-                Vector3 to = starPoints[(s + 1) % 10];
-                for (int i = 0; i < perSegment; i++)
-                {
-                    float t = (float)i / perSegment;
-                    points.Add(Vector3.Lerp(from, to, t));
-                }
-            }
-
-            while (points.Count < count)
-                points.Add(starPoints[0]);
-
-        }
         else if (magicName == "Star")
         {
             int tips = 5;

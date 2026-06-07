@@ -22,6 +22,9 @@ public class MagicCircleController : MonoBehaviour
     public TrailRenderer drawingTrail;
     public ParticleSystem projectileEffect;
 
+    [Header("마법봉")]
+    public Transform wandTransform;
+
     public MagicGuideDisplay magicGuideDisplay;
     public AccuracyDisplay accuracyDisplay;
 
@@ -116,7 +119,7 @@ public class MagicCircleController : MonoBehaviour
         int enemyLayer = LayerMask.GetMask("Enemy");
 
         // 오른손 컨트롤러 방향으로 Raycast 발사
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = new Ray(wandTransform.position, wandTransform.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer))
         {
