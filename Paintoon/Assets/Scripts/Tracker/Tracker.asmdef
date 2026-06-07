@@ -5,7 +5,8 @@
 		"Unity.InputSystem",
 		"Unity.TextMeshPro",
 		"EnemyScript",
-		"PlayerScript"
+		"PlayerScript",
+		"Scripts"
 	],
 	"includePlatforms": [],
 	"excludePlatforms": [],

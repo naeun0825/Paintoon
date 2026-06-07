@@ -99,10 +99,19 @@ public class MagicCircleController : MonoBehaviour
         }
 
         // Trigger
-        if (!string.IsNullOrEmpty(_readyMagic) && trigger > 0.8f)
+        if (trigger > 0.8f)
         {
-            FireMagic(_readyMagic, _magicAccuracy);
-            _readyMagic = "";
+            if (!string.IsNullOrEmpty(_readyMagic))
+            {
+                // 마법 장전 상태 → 발사
+                FireMagic(_readyMagic, _magicAccuracy);
+                _readyMagic = "";
+            }
+            else
+            {
+                // 마법 장전 안 된 상태 → 상호작용
+                Interact();
+            }
         }
     }
 
@@ -133,6 +142,27 @@ public class MagicCircleController : MonoBehaviour
         else
         {
             Debug.Log($"{magicName} 빗나감!");
+        }
+    }
+
+    private void Interact()
+    {
+        Ray ray = new Ray(wandTransform.position, wandTransform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 3f))
+        {
+            if (hit.collider.CompareTag("Chest"))
+            {
+                Chest chest = hit.collider.GetComponent<Chest>();
+                if (chest != null)
+                    chest.OpenChest();
+            }
+            else if (hit.collider.CompareTag("Door"))
+            {
+                DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
+                if (door != null)
+                    door.LoadNextScene();
+            }
         }
     }
 }
