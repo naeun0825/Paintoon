@@ -16,6 +16,22 @@ public class WristUIController : MonoBehaviour
     private float _remainingTime = 60f;
     private bool _isRunning = true;
 
+    private void Start()
+    {
+        // PlayerHealth 이벤트 구독
+        if (PlayerHealth.Instance != null)
+        {
+            PlayerHealth.Instance.OnHealthChanged += UpdateHP;
+            UpdateHP(PlayerHealth.Instance.maxHealth); // 초기 HP 표시
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (PlayerHealth.Instance != null)
+            PlayerHealth.Instance.OnHealthChanged -= UpdateHP;
+    }
+
     private void Update()
     {
         // 손등이 위를 향하는지 확인
