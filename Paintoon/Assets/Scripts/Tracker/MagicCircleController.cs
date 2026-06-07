@@ -78,7 +78,7 @@ public class MagicCircleController : MonoBehaviour
             List<Vector3> raw = gestureRecorder.StopRecording();
             List<Vector3> projected = GestureNormalizer.ProjectToBestPlane(raw);
             List<Vector3> normalized = GestureNormalizer.Normalize(projected);
-            float accuracy = GestureComparer.Compare(normalized, _currentTemplate.points);
+            float accuracy = GestureComparer.CompareWithRotation(normalized, _currentTemplate.points);
 
             // MagicCircleController.cs Grip 뗌 부분에 임시로 추가
             Debug.Log($"Template first: {_currentTemplate.points[0]}");
