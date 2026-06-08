@@ -31,8 +31,15 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canEnter = true;
             Debug.Log("Player near door");
+            if (crystalManager != null && crystalManager.crystalCount >= crystalManager.maxCrystal)
+            {
+                LoadNextScene();
+            }
+            else
+            {
+                Debug.Log("크리스탈이 부족합니다!");
+            }
         }
     }
 

@@ -152,14 +152,12 @@ public class MagicCircleController : MonoBehaviour
     private void Interact()
     {
         Collider[] colliders = Physics.OverlapSphere(leftHandTransform.position, interactRadius);
-        Debug.Log($"감지된 오브젝트 수: {colliders.Length}");
 
         foreach (var col in colliders)
         {
-            Debug.Log($"감지된 오브젝트: {col.name}, Tag: {col.tag}");
             if (col.CompareTag("Chest"))
             {
-                Chest chest = col.GetComponent<Chest>();
+                Chest chest = col.GetComponentInParent<Chest>();
                 if (chest != null)
                 {
                     chest.OpenChest();

@@ -32,6 +32,8 @@ public class TimerManager : MonoBehaviour
         // 게임 오버 상태라면 타이머 로직을 더 이상 실행하지 않음
         if (isGameOver) return;
 
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
+
         // 시간이 남아있다면 매 프레임마다 남은 시간에서 deltaTime을 뺌
         if (gameTime > 0)
         {

@@ -39,11 +39,14 @@ public class EnemyAI : MonoBehaviour
 
         navMeshData = NavMesh.CalculateTriangulation();
 
-        SetNewPatrolDestination(); // 시작 시 첫 목적지 설정
+        //SetNewPatrolDestination(); // 시작 시 첫 목적지 설정
+        agent.isStopped = true;
     }
 
     void Update()
     {
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
+
         // 플레이어와의 거리 계산
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -159,22 +162,21 @@ public class EnemyAI : MonoBehaviour
     }
 
     // 시야 판정 (Raycast 추가)
-
     bool CanSeePlayer(float distance)
     {
-        Debug.Log($"거리: {distance}, sightRange: {sightRange}");
         if (distance <= sightRange)
         {
+            // 적의 정면과 플레이어 사이의 각도를 계산하여 시야각 내에 있는지 확인
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
-            Debug.Log($"각도: {angle}, fieldOfView: {fieldOfViewAngle / 2f}");
 
             if (angle < fieldOfViewAngle / 2f)
             {
-                bool blocked = Physics.Raycast(transform.position + Vector3.up, directionToPlayer, distance, obstacleMask);
-                Debug.Log($"막혔나: {blocked}");
-                if (!blocked)
+                // Raycast를 쏴서 플레이어와 적 사이에 벽이 없는지 확인
+                if (!Physics.Raycast(transform.position + Vector3.up, directionToPlayer, distance, obstacleMask))
+                {
                     return true;
+                }
             }
         }
         return false;

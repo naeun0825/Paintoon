@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9060558071711098539, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
+      propertyPath: m_TagString
+      value: Chest
+      objectReference: {fileID: 0}
     - target: {fileID: 9060558071711098540, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -98,6 +102,14 @@ PrefabInstance:
     - target: {fileID: 9060558071711098540, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060558072825656721, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
+      propertyPath: m_TagString
+      value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060558072975516365, guid: e1807b67cb3454ae5a4183235bbf86b3, type: 3}
+      propertyPath: m_TagString
+      value: Chest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
