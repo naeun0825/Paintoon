@@ -140,13 +140,13 @@ public class MagicCircleController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer)) 
         {
-            Debug.Log($"맞은 오브젝트: {hit.collider.name}, Layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
+            Debug.Log($"object: {hit.collider.name}, Layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
 
             EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                Debug.Log($"{magicName} 적 명중! 데미지: {damage} (정확도: {accuracy:P0})");
+                Debug.Log($"{magicName} shoot! damage: {damage} (accuracy: {accuracy:P0})");
             }
             else
             {
@@ -159,7 +159,7 @@ public class MagicCircleController : MonoBehaviour
         }
         else
         {
-            Debug.Log($"{magicName} 빗나감!");
+            Debug.Log($"{magicName} not shoot!");
         }
     }
 

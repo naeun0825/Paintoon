@@ -17,10 +17,10 @@ public class StartMenuManager : MonoBehaviour
 
     IEnumerator ShowStartCanvas()
     {
-        yield return new WaitForEndOfFrame(); // 한 프레임 대기
+        yield return new WaitForSeconds(0.5f); // 한 프레임 대기
 
         startCanvas.transform.position = mainCamera.transform.position
-            + mainCamera.transform.forward * distance + Vector3.up * 0.3f;
+            + mainCamera.transform.forward * distance;
         startCanvas.transform.rotation = mainCamera.transform.rotation;
 
         startCanvas.SetActive(true);
