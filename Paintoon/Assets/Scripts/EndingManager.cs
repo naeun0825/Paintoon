@@ -5,7 +5,7 @@ public class EndingMenu : MonoBehaviour
 {
     public void RestartGame()
     {
-        SceneManager.LoadScene("R1");
+        SceneManager.LoadScene("Round1");
     }
 
     public void ExitGame()

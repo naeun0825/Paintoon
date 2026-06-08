@@ -4,34 +4,34 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
-    // »óÅÂ Á¤ÀÇ
+    // ìƒíƒœ ì •ì˜
     public enum EnemyState { Patrol, Chase, Attack }
     public EnemyState currentState;
 
     [Header("Target & Components")]
     public Transform player;
     private NavMeshAgent agent;
-    private Animator animator; // ¾Ö´Ï¸ŞÀÌ¼Ç Á¦¾î¿ë
+    private Animator animator; // ì• ë‹ˆë©”ì´ì…˜ ì œì–´ìš©
 
-    [Header("Detection Settings (½Ã¾ß ¹× ¹üÀ§)")]
-    public float sightRange = 10f;       // ÀÎÁö °Å¸®
-    public float fieldOfViewAngle = 90f; // ½Ã¾ß°¢
-    public float attackRange = 2f;       // °ø°İ °Å¸®
-    public LayerMask obstacleMask;       // º® ·¹ÀÌ¾î ¸¶½ºÅ©
+    [Header("Detection Settings (ì‹œì•¼ ë° ë²”ìœ„)")]
+    public float sightRange = 10f;       // ì¸ì§€ ê±°ë¦¬
+    public float fieldOfViewAngle = 90f; // ì‹œì•¼ê°
+    public float attackRange = 2f;       // ê³µê²© ê±°ë¦¬
+    public LayerMask obstacleMask;       // ë²½ ë ˆì´ì–´ ë§ˆìŠ¤í¬
 
-    [Header("Patrol Settings (¹èÈ¸ ¼³Á¤)")]
-    public float patrolRadius = 10f;     // ¹èÈ¸ ¹İ°æ
-    public float idleDuration = 1f;      // ¸ñÇ¥ µµÂø ÈÄ ´ë±â ½Ã°£
+    [Header("Patrol Settings (ë°°íšŒ ì„¤ì •)")]
+    public float patrolRadius = 10f;     // ë°°íšŒ ë°˜ê²½
+    public float idleDuration = 1f;      // ëª©í‘œ ë„ì°© í›„ ëŒ€ê¸° ì‹œê°„
     private bool isIdling = false;
     private float idleTimer = 0f;
 
     [Header("Attack Settings")]
-    public float attackCooldown = 1.5f;  // °ø°İ ¼Óµµ
+    public float attackCooldown = 1.5f;  // ê³µê²© ì†ë„
     private float lastAttackTime;
 
-    private NavMeshTriangulation navMeshData; // ¸Ê ÀüÃ¼ÀÇ NavMesh µ¥ÀÌÅÍ¸¦ ´ãÀ» º¯¼ö
+    private NavMeshTriangulation navMeshData; // ë§µ ì „ì²´ì˜ NavMesh ë°ì´í„°ë¥¼ ë‹´ì„ ë³€ìˆ˜
 
-    // ÀûÀÇ ÀÌµ¿ °¡´É ¿©ºÎ¸¦ Á¦¾îÇÏ´Â ÇÃ·¡±×
+    // ì ì˜ ì´ë™ ê°€ëŠ¥ ì—¬ë¶€ë¥¼ ì œì–´í•˜ëŠ” í”Œë˜ê·¸
     public bool canMove = false;
     void Start()
     {
@@ -41,17 +41,18 @@ public class EnemyAI : MonoBehaviour
         currentState = EnemyState.Patrol;
 
         navMeshData = NavMesh.CalculateTriangulation();
-
+        
         StartCoroutine(SpawnSequence()); 
+        agent.isStopped = true;
     }
 
-    // ½ºÆù ¿¬ÃâÀÌ ³¡³¯ ¶§±îÁö ´ë±âÇÏ´Â ÄÚ·çÆ¾
+    // ìŠ¤í° ì—°ì¶œì´ ëë‚  ë•Œê¹Œì§€ ëŒ€ê¸°í•˜ëŠ” ì½”ë£¨í‹´
     IEnumerator SpawnSequence()
     {
-        // ÀÌµ¿ ±İÁö (Idle »óÅÂ À¯Áö)
+        // ì´ë™ ê¸ˆì§€ (Idle ìƒíƒœ ìœ ì§€)
         canMove = false;
 
-        // EnemyHealth ½ºÅ©¸³Æ®¿¡ ¼³Á¤µÈ VFX Áö¼Ó ½Ã°£À» °¡Á®¿È
+        // EnemyHealth ìŠ¤í¬ë¦½íŠ¸ì— ì„¤ì •ëœ VFX ì§€ì† ì‹œê°„ì„ ê°€ì ¸ì˜´
         float delay = 2.0f; 
         EnemyHealth health = GetComponent<EnemyHealth>();
         if (health != null)
@@ -59,20 +60,22 @@ public class EnemyAI : MonoBehaviour
             delay = health.vfxDestroyTime;
         }
 
-        // VFX°¡ ÅÍÁö´Â ½Ã°£¸¸Å­ ´ë±â
+        // VFXê°€ í„°ì§€ëŠ” ì‹œê°„ë§Œí¼ ëŒ€ê¸°
         yield return new WaitForSeconds(delay);
 
-        // ´ë±â ½Ã°£ÀÌ ³¡³ª¸é ÀÌµ¿ °¡´É »óÅÂ·Î ÀüÈ¯ÇÏ°í Ã¹ ¸ñÀûÁö ¼³Á¤
+        // ëŒ€ê¸° ì‹œê°„ì´ ëë‚˜ë©´ ì´ë™ ê°€ëŠ¥ ìƒíƒœë¡œ ì „í™˜í•˜ê³  ì²« ëª©ì ì§€ ì„¤ì •
         canMove = true;
         SetNewPatrolDestination();
     }
 
     void Update()
     {
-        // canMove°¡ falseÀÏ ¶§(½ºÆù ¿¬Ãâ ÁßÀÏ ¶§)´Â ¾Æ·¡ÀÇ ¸ğµç ÀÌµ¿/ÃßÀû ·ÎÁ÷À» ¹«½ÃÇÔ
+        // canMoveê°€ falseì¼ ë•Œ(ìŠ¤í° ì—°ì¶œ ì¤‘ì¼ ë•Œ)ëŠ” ì•„ë˜ì˜ ëª¨ë“  ì´ë™/ì¶”ì  ë¡œì§ì„ ë¬´ì‹œí•¨
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
         if (!canMove) return;
-
-        // ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸® °è»ê
+        
+        
+        // í”Œë ˆì´ì–´ì™€ì˜ ê±°ë¦¬ ê³„ì‚°
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)
@@ -89,43 +92,43 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // »óÅÂº° ·ÎÁ÷
+    // ìƒíƒœë³„ ë¡œì§
     void UpdatePatrolState(float distanceToPlayer)
     {
-        // ½Ã¾ß°¢ ³»¿¡ ÇÃ·¹ÀÌ¾î°¡ µé¾î¿À¸é ÃßÀû ½ÃÀÛ
+        // ì‹œì•¼ê° ë‚´ì— í”Œë ˆì´ì–´ê°€ ë“¤ì–´ì˜¤ë©´ ì¶”ì  ì‹œì‘
         if (CanSeePlayer(distanceToPlayer))
         {
-            isIdling = false; // ´ë±â »óÅÂ Ãë¼Ò
+            isIdling = false; // ëŒ€ê¸° ìƒíƒœ ì·¨ì†Œ
             currentState = EnemyState.Chase;
             return;
         }
 
-        // ¸ñÀûÁö¿¡ µµÂøÇß´ÂÁö È®ÀÎ (³²Àº °Å¸®°¡ 0.5f ÀÌÇÏÀÏ ¶§)
+        // ëª©ì ì§€ì— ë„ì°©í–ˆëŠ”ì§€ í™•ì¸ (ë‚¨ì€ ê±°ë¦¬ê°€ 0.5f ì´í•˜ì¼ ë•Œ)
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             if (!isIdling)
             {
-                // ¸· µµÂøÇß´Ù¸é Idle »óÅÂ ÁøÀÔ
+                // ë§‰ ë„ì°©í–ˆë‹¤ë©´ Idle ìƒíƒœ ì§„ì…
                 isIdling = true;
                 idleTimer = 0f;
-                animator.SetBool("isMoving", false); // Idle ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+                animator.SetBool("isMoving", false); // Idle ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
             }
             else
             {
-                // ´ë±â ½Ã°£ Ä«¿îÆ®
+                // ëŒ€ê¸° ì‹œê°„ ì¹´ìš´íŠ¸
                 idleTimer += Time.deltaTime;
                 if (idleTimer >= idleDuration)
                 {
-                    // 1ÃÊ°¡ Áö³ª¸é »õ·Î¿î ¸ñÀûÁö Å½»ö ¹× ÀÌµ¿ ½ÃÀÛ
+                    // 1ì´ˆê°€ ì§€ë‚˜ë©´ ìƒˆë¡œìš´ ëª©ì ì§€ íƒìƒ‰ ë° ì´ë™ ì‹œì‘
                     isIdling = false;
                     SetNewPatrolDestination();
-                    animator.SetBool("isMoving", true); // Walk ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+                    animator.SetBool("isMoving", true); // Walk ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
                 }
             }
         }
         else
         {
-            // ÀÌµ¿ ÁßÀÏ ¶§ ¾Ö´Ï¸ŞÀÌ¼Ç À¯Áö
+            // ì´ë™ ì¤‘ì¼ ë•Œ ì• ë‹ˆë©”ì´ì…˜ ìœ ì§€
             animator.SetBool("isMoving", true);
         }
     }
@@ -136,68 +139,68 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = false;
         agent.SetDestination(player.position);
 
-        // °ø°İ ¹üÀ§¿¡ µé¾î¿À¸é °ø°İ ½ÃÀÛ
+        // ê³µê²© ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ê³µê²© ì‹œì‘
         if (distanceToPlayer <= attackRange)
         {
             currentState = EnemyState.Attack;
         }
-        // ½Ã¾ß¿¡¼­ ¹ş¾î³ª¸é ´Ù½Ã ¹èÈ¸
+        // ì‹œì•¼ì—ì„œ ë²—ì–´ë‚˜ë©´ ë‹¤ì‹œ ë°°íšŒ
         else if (!CanSeePlayer(distanceToPlayer))
         {
             currentState = EnemyState.Patrol;
-            SetNewPatrolDestination(); // ¹èÈ¸·Î µ¹¾Æ°¥ ¶§ Áï½Ã »õ ¸ñÇ¥ ¼³Á¤
+            SetNewPatrolDestination(); // ë°°íšŒë¡œ ëŒì•„ê°ˆ ë•Œ ì¦‰ì‹œ ìƒˆ ëª©í‘œ ì„¤ì •
         }
     }
 
     void UpdateAttackState(float distanceToPlayer)
     {
-        // ÀÌµ¿ Á¤Áö ¹× ÇÃ·¹ÀÌ¾î ¹Ù¶óº¸±â
+        // ì´ë™ ì •ì§€ ë° í”Œë ˆì´ì–´ ë°”ë¼ë³´ê¸°
         agent.isStopped = true;
         animator.SetBool("isMoving", false);
 
         Vector3 lookPos = new Vector3(player.position.x, transform.position.y, player.position.z);
         transform.LookAt(lookPos);
 
-        // ÄğÅ¸ÀÓ¸¶´Ù °è¼Ó °ø°İ
+        // ì¿¨íƒ€ì„ë§ˆë‹¤ ê³„ì† ê³µê²©
         if (Time.time >= lastAttackTime + attackCooldown)
         {
-            animator.SetTrigger("Attack"); // °ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å
+            animator.SetTrigger("Attack"); // ê³µê²© ì• ë‹ˆë©”ì´ì…˜ íŠ¸ë¦¬ê±°
             PerformAttack();
             lastAttackTime = Time.time;
         }
 
-        // ÇÃ·¹ÀÌ¾î°¡ °ø°İ ¹üÀ§ ¹ÛÀ¸·Î µµ¸Á°¡¸é ´Ù½Ã ÃßÀû
+        // í”Œë ˆì´ì–´ê°€ ê³µê²© ë²”ìœ„ ë°–ìœ¼ë¡œ ë„ë§ê°€ë©´ ë‹¤ì‹œ ì¶”ì 
         if (distanceToPlayer > attackRange)
         {
             currentState = EnemyState.Chase;
         }
     }
 
-    // ¹«ÀÛÀ§ ¹èÈ¸ À§Ä¡ ¼³Á¤ 
+    // ë¬´ì‘ìœ„ ë°°íšŒ ìœ„ì¹˜ ì„¤ì • 
     void SetNewPatrolDestination()
     {
-        // navMeshData.vertices ¹è¿­¿¡¼­ ¹«ÀÛÀ§ ²ÀÁşÁ¡ ÀÎµ¦½º¸¦ ÇÏ³ª »Ì±â
+        // navMeshData.vertices ë°°ì—´ì—ì„œ ë¬´ì‘ìœ„ ê¼­ì§“ì  ì¸ë±ìŠ¤ë¥¼ í•˜ë‚˜ ë½‘ê¸°
         int randomIndex = Random.Range(0, navMeshData.vertices.Length);
 
-        // ÇØ´ç ²ÀÁşÁ¡ÀÇ ÁÂÇ¥¸¦ ´ÙÀ½ ¸ñÇ¥ ÁöÁ¡À¸·Î ¼³Á¤
+        // í•´ë‹¹ ê¼­ì§“ì ì˜ ì¢Œí‘œë¥¼ ë‹¤ìŒ ëª©í‘œ ì§€ì ìœ¼ë¡œ ì„¤ì •
         Vector3 randomDestination = navMeshData.vertices[randomIndex];
 
         agent.SetDestination(randomDestination);
         agent.isStopped = false;
     }
 
-    // ½Ã¾ß ÆÇÁ¤ (Raycast Ãß°¡)
+    // ì‹œì•¼ íŒì • (Raycast ì¶”ê°€)
     bool CanSeePlayer(float distance)
     {
         if (distance <= sightRange)
         {
-            // ÀûÀÇ Á¤¸é°ú ÇÃ·¹ÀÌ¾î »çÀÌÀÇ °¢µµ¸¦ °è»êÇÏ¿© ½Ã¾ß°¢ ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+            // ì ì˜ ì •ë©´ê³¼ í”Œë ˆì´ì–´ ì‚¬ì´ì˜ ê°ë„ë¥¼ ê³„ì‚°í•˜ì—¬ ì‹œì•¼ê° ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
             if (angle < fieldOfViewAngle / 2f)
             {
-                // Raycast¸¦ ½÷¼­ ÇÃ·¹ÀÌ¾î¿Í Àû »çÀÌ¿¡ º®ÀÌ ¾ø´ÂÁö È®ÀÎ
+                // Raycastë¥¼ ì´ì„œ í”Œë ˆì´ì–´ì™€ ì  ì‚¬ì´ì— ë²½ì´ ì—†ëŠ”ì§€ í™•ì¸
                 if (!Physics.Raycast(transform.position + Vector3.up, directionToPlayer, distance, obstacleMask))
                 {
                     return true;
@@ -209,26 +212,26 @@ public class EnemyAI : MonoBehaviour
 
     void PerformAttack()
     {
-        // PlayerHealth ½Ì±ÛÅæ ÀÎ½ºÅÏ½º°¡ Á¸ÀçÇÏ¸é 1ÀÇ µ¥¹ÌÁö¸¦ °¡ÇÔ
+        // PlayerHealth ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ê°€ ì¡´ì¬í•˜ë©´ 1ì˜ ë°ë¯¸ì§€ë¥¼ ê°€í•¨
         if (PlayerHealth.Instance != null)
         {
-            Debug.Log("ÀûÀÌ ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö 1À» ÀÔÈü´Ï´Ù!");
+            Debug.Log("ì ì´ í”Œë ˆì´ì–´ì—ê²Œ ë°ë¯¸ì§€ 1ì„ ì…í™ë‹ˆë‹¤!");
             PlayerHealth.Instance.TakeDamage(1);
         }
     }
 
-    // Scene È­¸é ½Ã°¢È­
+    // Scene í™”ë©´ ì‹œê°í™”
     private void OnDrawGizmos()
     {
-        // ÀÎÁö ¹üÀ§ 
+        // ì¸ì§€ ë²”ìœ„ 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
 
-        // °ø°İ ¹üÀ§
+        // ê³µê²© ë²”ìœ„
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        // ½Ã¾ß°¢ 
+        // ì‹œì•¼ê° 
         Vector3 rightDir = Quaternion.Euler(0, fieldOfViewAngle / 2f, 0) * transform.forward;
         Vector3 leftDir = Quaternion.Euler(0, -fieldOfViewAngle / 2f, 0) * transform.forward;
 

@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CrystalManager : MonoBehaviour
 {
     public int crystalCount = 0;
     public int maxCrystal = 5;
 
-    public Text crystalText;
+    public TextMeshProUGUI crystalText;
 
     public GameObject closedDoor;  // ´ÝÈù ¹®
     public GameObject openDoor;    // ¿­¸° ¹®

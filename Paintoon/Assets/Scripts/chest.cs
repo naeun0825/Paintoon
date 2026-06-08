@@ -35,12 +35,4 @@ public class Chest : MonoBehaviour
             }
         }
     }
-    private void Update()
-    {
-        // 테스트용
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            OpenChest();
-        }
-    }
 }
