@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 3277966617024351191}
   - component: {fileID: 4092149731972633038}
   - component: {fileID: 4983166673640039728}
+  - component: {fileID: 46365183758380984}
   m_Layer: 0
   m_Name: StartCanvas
   m_TagString: Untagged
@@ -584,6 +585,25 @@ MonoBehaviour:
   helpCanvas: {fileID: 3952375393817775286}
   mainCamera: {fileID: 0}
   distance: 1
+--- !u!114 &46365183758380984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2587062556254245619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &3027281716594046005
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,6 +869,7 @@ GameObject:
   - component: {fileID: 7935170274689546075}
   - component: {fileID: 5079207567343516164}
   - component: {fileID: 3633428923311525987}
+  - component: {fileID: 7323059973529332001}
   m_Layer: 0
   m_Name: HelpCanvas
   m_TagString: Untagged
@@ -940,6 +961,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7323059973529332001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3952375393817775286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &4095597593857726455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1041,7 @@ GameObject:
   - component: {fileID: 7919957534106109745}
   - component: {fileID: 8056498740231024156}
   - component: {fileID: 8011748062134438897}
+  - component: {fileID: 554570085348658619}
   m_Layer: 0
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -1093,6 +1134,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &554570085348658619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426494501219636125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &4442305935636813060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,6 +1913,7 @@ GameObject:
   - component: {fileID: 3401348790411142310}
   - component: {fileID: 6562215769341528412}
   - component: {fileID: 5768890868968957213}
+  - component: {fileID: 8890219529281188777}
   m_Layer: 5
   m_Name: EndingCanvas
   m_TagString: Untagged
@@ -1946,6 +2007,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8890219529281188777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164446339148938970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &6562335103853190483
 GameObject:
   m_ObjectHideFlags: 0
