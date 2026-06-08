@@ -129,8 +129,8 @@ public class MagicCircleController : MonoBehaviour
         projectileEffect.transform.rotation = wandTransform.rotation;
         projectileEffect.Play();
 
-        int damage = Mathf.RoundToInt(accuracy * 3f);
-        damage = Mathf.Max(1, damage); // 최소 1 데미지
+        int damage = 1;
+        // 최소 1 데미지
 
         // Enemy 레이어 마스크 설정
         int enemyLayer = LayerMask.GetMask("Enemy");
@@ -138,7 +138,7 @@ public class MagicCircleController : MonoBehaviour
         // 오른손 컨트롤러 방향으로 Raycast 발사
         Ray ray = new Ray(wandTransform.position, wandTransform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer)) 
+        if (Physics.SphereCast(ray, 0.3f, out RaycastHit hit, 100f, enemyLayer)) 
         {
             Debug.Log($"object: {hit.collider.name}, Layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
 
