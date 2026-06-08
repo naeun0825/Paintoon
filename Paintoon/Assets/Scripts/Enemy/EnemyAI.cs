@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class EnemyAI : MonoBehaviour
 
     private NavMeshTriangulation navMeshData; // 맵 전체의 NavMesh 데이터를 담을 변수
 
+    // 적의 이동 가능 여부를 제어하는 플래그
+    public bool canMove = false;
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -39,11 +42,36 @@ public class EnemyAI : MonoBehaviour
 
         navMeshData = NavMesh.CalculateTriangulation();
 
-        SetNewPatrolDestination(); // 시작 시 첫 목적지 설정
+        StartCoroutine(SpawnSequence()); 
+    }
+
+    // 스폰 연출이 끝날 때까지 대기하는 코루틴
+    IEnumerator SpawnSequence()
+    {
+        // 이동 금지 (Idle 상태 유지)
+        canMove = false;
+
+        // EnemyHealth 스크립트에 설정된 VFX 지속 시간을 가져옴
+        float delay = 2.0f; 
+        EnemyHealth health = GetComponent<EnemyHealth>();
+        if (health != null)
+        {
+            delay = health.vfxDestroyTime;
+        }
+
+        // VFX가 터지는 시간만큼 대기
+        yield return new WaitForSeconds(delay);
+
+        // 대기 시간이 끝나면 이동 가능 상태로 전환하고 첫 목적지 설정
+        canMove = true;
+        SetNewPatrolDestination();
     }
 
     void Update()
     {
+        // canMove가 false일 때(스폰 연출 중일 때)는 아래의 모든 이동/추적 로직을 무시함
+        if (!canMove) return;
+
         // 플레이어와의 거리 계산
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
