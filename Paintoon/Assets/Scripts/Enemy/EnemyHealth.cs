@@ -1,4 +1,6 @@
+using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -6,13 +8,27 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
 
+    [Header("UI")]
+    public UnityEngine.UI.Slider hpSlider;
+
+    private Camera mainCamera;
+
     private Animator animator;
     private bool isDead = false;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        hpSlider.value = currentHealth / maxHealth;
+
+        mainCamera = Camera.main;
         animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        // 체력바가 항상 카메라를 바라봄
+        hpSlider.transform.LookAt(hpSlider.transform.position + mainCamera.transform.rotation * Vector3.forward,mainCamera.transform.rotation * Vector3.up);
     }
 
     // 팀원의 레이캐스트 스크립트에서 호출될 피격 함수
@@ -21,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+        hpSlider.value = currentHealth / maxHealth;
         Debug.Log($"{gameObject.name}이(가) 공격받았습니다! 남은 체력: {currentHealth}");
 
         if (currentHealth > 0)
