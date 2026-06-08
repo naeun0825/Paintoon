@@ -9,6 +9,15 @@ public class GameOverManager : MonoBehaviour
     public float distance = 1.5f;
 
     private bool _isGameOver = false;
+    public static GameOverManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     public void ShowGameOver()
     {
