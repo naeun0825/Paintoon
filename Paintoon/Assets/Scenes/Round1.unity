@@ -11532,7 +11532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765358308773584801, guid: ca96c97865004ae42ab9fc00a1f3a9e2, type: 3}
       propertyPath: spawnInterval
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8765358308773584801, guid: ca96c97865004ae42ab9fc00a1f3a9e2, type: 3}
       propertyPath: 'enemyPrefabs.Array.data[0]'

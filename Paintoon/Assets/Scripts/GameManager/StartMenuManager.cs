@@ -12,7 +12,13 @@ public class StartMenuManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ShowStartCanvas());
+        if (SceneManager.GetActiveScene().name == "Round1")
+            StartCoroutine(ShowStartCanvas());
+        else
+        {
+            startCanvas.SetActive(false);
+            GameStateManager.Instance.StartGame(); // R1 아니면 바로 게임 시작
+        }
     }
 
     IEnumerator ShowStartCanvas()
