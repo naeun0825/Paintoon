@@ -20,6 +20,8 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
+
         // 매 프레임마다 시간을 누적
         timer += Time.deltaTime;
 

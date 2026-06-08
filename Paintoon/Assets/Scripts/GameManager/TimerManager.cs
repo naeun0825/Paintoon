@@ -32,6 +32,8 @@ public class TimerManager : MonoBehaviour
         // 게임 오버 상태라면 타이머 로직을 더 이상 실행하지 않음
         if (isGameOver) return;
 
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
+
         // 시간이 남아있다면 매 프레임마다 남은 시간에서 deltaTime을 뺌
         if (gameTime > 0)
         {
@@ -66,6 +68,8 @@ public class TimerManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("120초가 모두 지나 게임이 종료되었습니다!");
 
+        if (GameOverManager.Instance != null)
+            GameOverManager.Instance.ShowGameOver();
         // TODO: 여기에 게임 오버 시 필요한 로직을 추가
         // 예: 스포너 작동 중지, 플레이어 조작 잠금, 결과창 UI 표시 등
     }
