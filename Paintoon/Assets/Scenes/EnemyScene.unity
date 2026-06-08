@@ -452,7 +452,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5801106797568766527, guid: 9e8e370a9329f724b9447ffd95243797, type: 3}
   - {fileID: 5746649410584704651, guid: b8374ab676eff36468cde70e4add6d0e, type: 3}
-  spawnInterval: 20
+  spawnInterval: 5
 --- !u!4 &1138078454
 Transform:
   m_ObjectHideFlags: 0

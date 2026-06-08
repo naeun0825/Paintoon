@@ -33,6 +33,8 @@ public class EnemyAI : MonoBehaviour
 
     // 적의 이동 가능 여부를 제어하는 플래그
     public bool canMove = false;
+
+    public AudioSource audioSource;
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -87,6 +89,13 @@ public class EnemyAI : MonoBehaviour
                 UpdateAttackState(distanceToPlayer);
                 break;
         }
+
+        if (currentState == EnemyState.Patrol || currentState == EnemyState.Chase)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+            
     }
 
     // 상태별 로직
