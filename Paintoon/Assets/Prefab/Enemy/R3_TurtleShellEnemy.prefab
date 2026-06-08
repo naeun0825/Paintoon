@@ -868,6 +868,7 @@ MonoBehaviour:
   patrolRadius: 10
   idleDuration: 1
   attackCooldown: 1.5
+  canMove: 0
 --- !u!114 &113480308722774779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,6 +883,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 3
   hpSlider: {fileID: 1969651860111207780}
+  spawnVFXPrefab: {fileID: 159196, guid: 37e803394624a5c48ae5f13fd212ac0b, type: 3}
+  deathVFXPrefab: {fileID: 159196, guid: 37e803394624a5c48ae5f13fd212ac0b, type: 3}
+  vfxDestroyTime: 1.5
 --- !u!195 &2869642300766787553
 NavMeshAgent:
   m_ObjectHideFlags: 0
