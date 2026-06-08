@@ -36,7 +36,7 @@ public class GameOverManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("R1"); // 첫 번째 씬 이름
+        SceneManager.LoadScene("Round1"); // 첫 번째 씬 이름
     }
 
     public void QuitGame()

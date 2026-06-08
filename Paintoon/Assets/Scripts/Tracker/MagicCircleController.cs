@@ -138,8 +138,10 @@ public class MagicCircleController : MonoBehaviour
         // 오른손 컨트롤러 방향으로 Raycast 발사
         Ray ray = new Ray(wandTransform.position, wandTransform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f)) // ,enemyLayer마스크 나중에 꼭!! 넣어야함 
         {
+            Debug.Log($"맞은 오브젝트: {hit.collider.name}, Layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
+
             EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
             if (enemy != null)
             {
