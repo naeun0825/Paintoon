@@ -31,8 +31,11 @@ public class AccuracyDisplay : MonoBehaviour
 
     public void ShowAccuracy(float accuracy)
     {
-        int percent = Mathf.RoundToInt(accuracy * 100f);
-        accuracyText.text = $"정확도: {percent}%";
+        if (accuracy >= 0.5f) // minAccuracy 기준
+            accuracyText.text = "Magic Ready!";
+        else
+            accuracyText.text = "Try Again!";
+
         accuracyText.gameObject.SetActive(true);
         _timer = displayDuration;
         _isShowing = true;

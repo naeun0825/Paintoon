@@ -5557,6 +5557,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2608235733679621467, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2536614557968034261}
+    - targetCorrespondingSourceObject: {fileID: 2608235733679621467, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2809594164970268225}
   m_SourcePrefab: {fileID: 100100000, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}
 --- !u!4 &2815656789834316697 stripped
 Transform:
@@ -5581,6 +5584,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 5
+--- !u!114 &2809594164970268225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830298915503355473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1c856fce6f18346b017243fc2c802e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Scripts::PlayerSpawn
+  spawnPoint: {fileID: 0}
 --- !u!20 &6377807662658438659 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 6627023820520764681, guid: 01a3dde070d91cd48a5d2349a8f4392a, type: 3}

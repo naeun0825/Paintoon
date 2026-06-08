@@ -40,6 +40,10 @@ public class MagicCircleController : MonoBehaviour
 
     private void Update()
     {
+
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
+
+
         float rightGrip = rightGripAction.action.ReadValue<float>();
         float leftGrip = leftGripAction.action.ReadValue<float>();
         float trigger = triggerAction.action.ReadValue<float>();
