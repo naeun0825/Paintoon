@@ -18,26 +18,10 @@ public class DoorTrigger : MonoBehaviour
             Debug.Log("crystal: " +
                 crystalManager.crystalCount + " / " +
                 crystalManager.maxCrystal);
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("E pressed");
-
-                if (crystalManager != null &&
-                    crystalManager.crystalCount >= crystalManager.maxCrystal)
-                {
-                    Debug.Log("LOAD SCENE");
-                    LoadNextScene();
-                }
-                else
-                {
-                    Debug.Log("NOT ENOUGH CRYSTALS");
-                }
-            }
         }
     }
 
-    void LoadNextScene()
+    public void LoadNextScene()
     {
         Debug.Log("Scene Loading...");
         SceneManager.LoadScene(nextSceneName);
@@ -47,8 +31,15 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canEnter = true;
             Debug.Log("Player near door");
+            if (crystalManager != null && crystalManager.crystalCount >= crystalManager.maxCrystal)
+            {
+                LoadNextScene();
+            }
+            else
+            {
+                Debug.Log("크리스탈이 부족합니다!");
+            }
         }
     }
 

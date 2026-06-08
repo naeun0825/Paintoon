@@ -39,11 +39,14 @@ public class EnemyAI : MonoBehaviour
 
         navMeshData = NavMesh.CalculateTriangulation();
 
-        SetNewPatrolDestination(); // 시작 시 첫 목적지 설정
+        //SetNewPatrolDestination(); // 시작 시 첫 목적지 설정
+        agent.isStopped = true;
     }
 
     void Update()
     {
+        if (GameStateManager.Instance == null || !GameStateManager.Instance.isGameStarted) return;
+
         // 플레이어와의 거리 계산
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 

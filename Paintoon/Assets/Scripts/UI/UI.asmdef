@@ -1,12 +1,9 @@
 {
-	"name": "Tracker",
+	"name": "UI",
 	"rootNamespace": "",
 	"references": [
-		"Unity.InputSystem",
-		"Unity.TextMeshPro",
-		"EnemyScript",
 		"PlayerScript",
-		"Scripts"
+		"Unity.TextMeshPro"
 	],
 	"includePlatforms": [],
 	"excludePlatforms": [],
