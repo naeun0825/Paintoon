@@ -1,6 +1,7 @@
 // StartMenuManager.cs
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class StartMenuManager : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class StartMenuManager : MonoBehaviour
 
     private void Start()
     {
-        // 게임 시작 시 StartCanvas를 카메라 정면에 배치
+        StartCoroutine(ShowStartCanvas());
+    }
+
+    IEnumerator ShowStartCanvas()
+    {
+        yield return new WaitForEndOfFrame(); // 한 프레임 대기
+
         startCanvas.transform.position = mainCamera.transform.position
-            + mainCamera.transform.forward * distance;
+            + mainCamera.transform.forward * distance + Vector3.up * 0.3f;
         startCanvas.transform.rotation = mainCamera.transform.rotation;
 
         startCanvas.SetActive(true);

@@ -63,6 +63,7 @@ public class EnemyAI : MonoBehaviour
         // VFX가 터지는 시간만큼 대기
         yield return new WaitForSeconds(delay);
 
+        yield return new WaitUntil(() => GameStateManager.Instance != null && GameStateManager.Instance.isGameStarted);
         // 대기 시간이 끝나면 이동 가능 상태로 전환하고 첫 목적지 설정
         canMove = true;
         SetNewPatrolDestination();
