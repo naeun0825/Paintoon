@@ -45,6 +45,8 @@ public class EnemyHealth : MonoBehaviour
     // 팀원의 레이캐스트 스크립트에서 호출될 피격 함수
     public void TakeDamage(int damage)
     {
+        Debug.Log($"TakeDamage 호출! isDead: {isDead}, currentHealth: {currentHealth}");
+
         if (isDead) return;
 
         currentHealth -= damage;
@@ -79,6 +81,7 @@ public class EnemyHealth : MonoBehaviour
         // 사망 후 적의 이동 및 콜라이더 비활성화 등의 처리
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Collider>().enabled = false;
+        GetComponent<EnemyAI>().enabled = false;
         this.enabled = false; // AI 스크립트 정지
 
         // 일정 시간 후 캐릭터 삭제

@@ -21,6 +21,7 @@ public class GameStateManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("GameOver »£√‚µ !");
         isGameStarted = false;
     }
 }
