@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        hpSlider.value = currentHealth / maxHealth;
+        hpSlider.value = (float)currentHealth / maxHealth;
 
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
