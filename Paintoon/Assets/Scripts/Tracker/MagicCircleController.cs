@@ -37,6 +37,7 @@ public class MagicCircleController : MonoBehaviour
     private GestureTemplate _currentTemplate; // 현재 선택된 템플릿
     private string _readyMagic = "";
     private float _magicAccuracy = 0f;
+    private bool _triggerPressed = false;
 
     private void Update()
     {
@@ -110,10 +111,18 @@ public class MagicCircleController : MonoBehaviour
 
         // Trigger
         // 오른손 Trigger → 마법 발사
-        if (trigger > 0.8f && !string.IsNullOrEmpty(_readyMagic))
+        if (trigger > 0.8f && !_triggerPressed)
         {
-            FireMagic(_readyMagic, _magicAccuracy);
-            _readyMagic = "";
+            _triggerPressed = true;
+            if (!string.IsNullOrEmpty(_readyMagic))
+            {
+                FireMagic(_readyMagic, _magicAccuracy);
+                _readyMagic = "";
+            }
+        }
+        else if (trigger <= 0.8f)
+        {
+            _triggerPressed = false;
         }
 
         // 왼손 Trigger → 상호작용 (별개로)
