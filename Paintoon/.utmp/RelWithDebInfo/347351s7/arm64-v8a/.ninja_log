@@ -1,10 +1,19 @@
 # ninja log v5
 51	3915	8027849457062211	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	53b2861c0d7b12ff
 27	3972	8027849457357126	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	fe178bb9031f1c67
+4999	5279	8027849470423903	C:/Users/naeun/Desktop/school/2026-1/VR/Paintoon/Paintoon/Paintoon/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/347351s7/obj/arm64-v8a/libgame.so	8d085eccfa3f5eaf
+76	4999	8027849468035059	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	51185b1264b4497b
 0	4096	8027849457709456	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9d7b4136bbc152e9
-89	4098	8027849458199236	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5f9591cc1fa71dce
 11	4130	8027849458998554	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	cc47573b19b9ca2b
+89	4098	8027849458199236	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5f9591cc1fa71dce
 67	4571	8027849463714800	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c2f3a3af0a63935c
 18	4893	8027849466749716	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	6dccaa6cbb2eaea8
-76	4999	8027849468035059	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	51185b1264b4497b
-4999	5279	8027849470423903	C:/Users/naeun/Desktop/school/2026-1/VR/Paintoon/Paintoon/Paintoon/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/347351s7/obj/arm64-v8a/libgame.so	8d085eccfa3f5eaf
+203	3351	8028056262666662	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	fe178bb9031f1c67
+142	3355	8028056262686789	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	53b2861c0d7b12ff
+46	3373	8028056262804316	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	9d7b4136bbc152e9
+162	3395	8028056263059219	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	5f9591cc1fa71dce
+133	3436	8028056263556420	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	cc47573b19b9ca2b
+152	3649	8028056265729044	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	51185b1264b4497b
+172	3724	8028056266482551	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	c2f3a3af0a63935c
+20	3891	8028056268078753	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	6dccaa6cbb2eaea8
+3891	4119	8028056270428947	C:/Users/naeun/Desktop/school/2026-1/VR/Paintoon/Paintoon/Paintoon/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/347351s7/obj/arm64-v8a/libgame.so	8d085eccfa3f5eaf
