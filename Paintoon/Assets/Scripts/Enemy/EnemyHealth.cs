@@ -50,7 +50,7 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
-        hpSlider.value = currentHealth / maxHealth;
+        hpSlider.value = (float)currentHealth / maxHealth;
         Debug.Log($"{gameObject.name}이(가) 공격받았습니다! 남은 체력: {currentHealth}");
 
         if (currentHealth > 0)
