@@ -7,7 +7,6 @@ public class MagicCircleController : MonoBehaviour
 {
     [Header("참조")]
     public GestureRecorder gestureRecorder;
-    //public GestureRecognizer gestureRecognizer; // 템플릿 비교기 (다음에 만들 것)
 
     [Header("템플릿")]
     public GestureTemplate skill1Template;      // Circle 고정
@@ -37,6 +36,7 @@ public class MagicCircleController : MonoBehaviour
     private GestureTemplate _currentTemplate; // 현재 선택된 템플릿
     private string _readyMagic = "";
     private float _magicAccuracy = 0f;
+    private bool _triggerPressed = false;
 
     private void Update()
     {
@@ -62,13 +62,11 @@ public class MagicCircleController : MonoBehaviour
                 // 스킬 2: 랜덤 템플릿 선택
                 int idx = Random.Range(0, skill2Templates.Count);
                 _currentTemplate = skill2Templates[idx];
-                Debug.Log($"스킬 2 - {_currentTemplate.magicName} 모양");
             }
             else
             {
                 // 스킬 1: 고정 Circle
                 _currentTemplate = skill1Template;
-                Debug.Log("스킬 1 - Circle 고정");
             }
 
             gestureRecorder.StartRecording();
@@ -99,21 +97,24 @@ public class MagicCircleController : MonoBehaviour
             {
                 _readyMagic = _currentTemplate.magicName;
                 _magicAccuracy = accuracy;
-                Debug.Log($"마법 준비됨: {_readyMagic} (정확도: {accuracy:P0})");
-            }
-            else
-            {
-                Debug.Log($"마법진 인식 실패 (정확도: {accuracy:P0})");
             }
             accuracyDisplay.ShowAccuracy(accuracy);
         }
 
         // Trigger
         // 오른손 Trigger → 마법 발사
-        if (trigger > 0.8f && !string.IsNullOrEmpty(_readyMagic))
+        if (trigger > 0.8f && !_triggerPressed)
         {
-            FireMagic(_readyMagic, _magicAccuracy);
-            _readyMagic = "";
+            _triggerPressed = true;
+            if (!string.IsNullOrEmpty(_readyMagic))
+            {
+                FireMagic(_readyMagic, _magicAccuracy);
+                _readyMagic = "";
+            }
+        }
+        else if (trigger <= 0.8f)
+        {
+            _triggerPressed = false;
         }
 
         // 왼손 Trigger → 상호작용 (별개로)

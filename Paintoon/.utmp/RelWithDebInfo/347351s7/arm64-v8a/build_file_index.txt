@@ -1,0 +1,2 @@
+C:\Users\naeun\Desktop\school\2026-1\VR\Paintoon\Paintoon\Paintoon\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\naeun\Desktop\school\2026-1\VR\Paintoon\Paintoon\Paintoon\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

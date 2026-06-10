@@ -11,7 +11,5 @@ public class EndingMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-
-        Debug.Log("게임 종료");
     }
 }
