@@ -2110,8 +2110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   currentState: 0
   player: {fileID: 0}
-  sightRange: 5
-  fieldOfViewAngle: 90
+  sightRange: 20
+  fieldOfViewAngle: 135
   attackRange: 2
   obstacleMask:
     serializedVersion: 2
@@ -2120,6 +2120,7 @@ MonoBehaviour:
   idleDuration: 1
   attackCooldown: 1.5
   canMove: 0
+  audioSource: {fileID: 0}
 --- !u!195 &1313951689718625472
 NavMeshAgent:
   m_ObjectHideFlags: 0
