@@ -366,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   currentState: 0
   player: {fileID: 0}
-  sightRange: 20
+  sightRange: 30
   fieldOfViewAngle: 180
   attackRange: 2
   obstacleMask:

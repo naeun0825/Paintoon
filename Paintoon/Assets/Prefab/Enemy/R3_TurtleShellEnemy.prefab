@@ -859,8 +859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   currentState: 0
   player: {fileID: 0}
-  sightRange: 10
-  fieldOfViewAngle: 90
+  sightRange: 20
+  fieldOfViewAngle: 135
   attackRange: 2
   obstacleMask:
     serializedVersion: 2
@@ -869,6 +869,7 @@ MonoBehaviour:
   idleDuration: 1
   attackCooldown: 1.5
   canMove: 0
+  audioSource: {fileID: 0}
 --- !u!114 &113480308722774779
 MonoBehaviour:
   m_ObjectHideFlags: 0
