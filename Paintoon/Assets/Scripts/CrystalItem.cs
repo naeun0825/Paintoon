@@ -31,7 +31,7 @@ public class CrystalItem : MonoBehaviour
         collected = true;
 
         if (manager == null)
-            manager = FindObjectOfType<CrystalManager>();
+            manager = FindAnyObjectByType<CrystalManager>();
 
         if (manager != null)
             manager.AddCrystal();

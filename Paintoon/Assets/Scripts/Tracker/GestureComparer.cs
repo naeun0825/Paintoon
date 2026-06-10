@@ -7,7 +7,6 @@ public static class GestureComparer
     {
         if (input.Count != template.Count)
         {
-            Debug.LogWarning("점 개수가 다릅니다!");
             return 0f;
         }
 

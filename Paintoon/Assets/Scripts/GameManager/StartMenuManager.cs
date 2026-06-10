@@ -55,6 +55,5 @@ public class StartMenuManager : MonoBehaviour
     public void OnQuitButton()
     {
         Application.Quit();
-        Debug.Log("게임 종료");
     }
 }

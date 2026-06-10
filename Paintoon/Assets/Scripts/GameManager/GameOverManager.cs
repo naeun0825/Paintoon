@@ -42,19 +42,13 @@ public class GameOverManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("게임 종료");
     }
 
     private void Start()
     {
         if (PlayerHealth.Instance != null)
         {
-            Debug.Log("PlayerHealth 연결");
             PlayerHealth.Instance.OnPlayerDeath += ShowGameOver;
-        }
-        else
-        {
-            Debug.Log("실패");
         }
     }
 

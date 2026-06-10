@@ -38,7 +38,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0) return; // 이미 죽었다면 무시
 
         currentHealth -= damage;
-        Debug.Log($"플레이어가 공격받았습니다! 남은 체력: {currentHealth}");
 
         // 체력이 변했다고 옵저버에게 알림
         OnHealthChanged?.Invoke(currentHealth);
@@ -51,7 +50,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("플레이어 사망!");
         OnPlayerDeath?.Invoke(); // 플레이어 사망 시 필요한 처리 
     }
 }
