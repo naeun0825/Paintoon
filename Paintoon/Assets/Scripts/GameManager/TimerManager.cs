@@ -55,11 +55,9 @@ public class TimerManager : MonoBehaviour
         // timeText가 인스펙터에 잘 연결되어 있을 때만 실행하여 에러를 방지합니다.
         if (timeText != null)
         {
-
             int minutes = Mathf.FloorToInt(gameTime / 60);
             int seconds = Mathf.FloorToInt(gameTime % 60);
             timeText.text = "\nTime : " + string.Format("{0:00}:{1:00}", minutes, seconds);
-
         }
     }
 
@@ -73,4 +71,15 @@ public class TimerManager : MonoBehaviour
         // TODO: 여기에 게임 오버 시 필요한 로직을 추가
         // 예: 스포너 작동 중지, 플레이어 조작 잠금, 결과창 UI 표시 등
     }
+
+    // --- 새롭게 추가된 로직: 시간을 더해주는 함수 ---
+    public void AddTime(float timeToAdd)
+    {
+        if (isGameOver) return; // 게임이 끝난 상태라면 시간 추가를 무시
+
+        gameTime += timeToAdd;
+        UpdateTimeUI(); // 시간이 늘어났으니 UI 즉시 새로고침
+        Debug.Log($"{timeToAdd}초가 추가되었습니다! 남은 시간: {gameTime}초");
+    }
+    // ------------------------------------------------
 }

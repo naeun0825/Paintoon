@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         // 체력바가 항상 카메라를 바라봄
-        hpSlider.transform.LookAt(hpSlider.transform.position + mainCamera.transform.rotation * Vector3.forward,mainCamera.transform.rotation * Vector3.up);
+        hpSlider.transform.LookAt(hpSlider.transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
     }
 
     // 팀원의 레이캐스트 스크립트에서 호출될 피격 함수
@@ -71,6 +71,13 @@ public class EnemyHealth : MonoBehaviour
         animator.SetTrigger("Die");
         Debug.Log($"{gameObject.name} 사망!");
 
+        // --- 새롭게 추가된 로직: 적 사망 시 타이머 10초 증가 ---
+        if (TimerManager.Instance != null)
+        {
+            TimerManager.Instance.AddTime(10f);
+        }
+        // --------------------------------------------------------
+
         if (deathVFXPrefab != null)
         {
             // 사망 이펙트를 적의 위치에 생성
@@ -82,7 +89,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Collider>().enabled = false;
         GetComponent<EnemyAI>().enabled = false;
-        this.enabled = false; // AI 스크립트 정지
+        this.enabled = false; // AI 스크립 정지
 
         // 일정 시간 후 캐릭터 삭제
         Destroy(gameObject, 3f);
